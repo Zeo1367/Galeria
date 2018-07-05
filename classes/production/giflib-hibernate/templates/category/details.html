@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('categories')"></head>
+<body>
+    <div th:replace="layout :: nav"></div>
+    <div th:replace="layout :: searchbar"></div>
+    <div th:replace="layout :: flash"></div>
+    <div class="gifs container">
+        <h2 th:text="${category.name}" th:style="|background-color:${category.colorCode}|"></h2>
+        <div class="row">
+            <div th:each="gif : ${category.gifs}" class="col s12 l4">
+                <a th:href="@{|/gifs/${gif.id}|}">
+                    <img th:src="@{|/gifs/${gif.id}.gif|}" />
+                    <a href="#" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></a>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div th:each="cat : ${categories}" class="col s12 l4">-->
+            <!--<div class="card" th:style="|background-color:${cat.colorCode}|">-->
+                <!--<div class="card-content">-->
+                    <!--<div class="card-title">-->
+                        <!--<a class="name" th:href="@{|/categories/${cat.id}|}" th:text="${cat.name}">Category Name</a>-->
+                        <!--<a class="edit" th:href="@{|/categories/${cat.id}/edit|}"><i class="hide-on-med-and-down material-icons">more_horiz</i><i class="hide-on-large-only medium material-icons">more_horiz</i></a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div th:replace="layout :: scripts"></div>
+</body>
+</html>
